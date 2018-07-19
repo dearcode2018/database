@@ -1,0 +1,41 @@
+/**
+ * @filename MySqlSystem.txt
+ * @description MySql - 系统
+ * @author qye.zheng
+ * @version 1.0
+ */
+
+mysql 启动
+1)在windows下安装为一个服务
+net start mysql_service_name
+
+2) 直接解压方式
+cd %MYSQL_HOME%\bin
+mysqld -u root
+
+mysql 连接
+1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

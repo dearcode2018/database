@@ -1,0 +1,28 @@
+
+
+/* 反向生成实体字段 需要以下元数据字段 */
+REMARKS 注释 /* 注释内容 */
+DATA_TYPE 数据类型，对应 java.sql.Types
+COLUMN_NAME 列名 --> 字段名
+
+
+字符: java.sql.Types.CHAR
+字符串: java.sql.Types.VARCHAR
+数字: java.sql.Types.DECIMAL
+整数: java.sql.Types.DECIMAL
+浮点数: java.sql.Types.DOUBLE
+日期时间: java.sql.Types.TIMESTAMP
+时间戳: java.sql.Types.TIMESTAMP
+BLOB: java.sql.Types.BLOB
+CLOB: java.sql.Types.CLOB
+
+
+
+
+
+
+
+
+
+
+

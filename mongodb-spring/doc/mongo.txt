@@ -1,0 +1,117 @@
+mongo
+
+1.基础
+mongodb的命令是区分大小写的，使用驼峰法命名.
+对于database和collection无需主动创建，在插入函数时，如果database和collection不存在则会自动创建.
+
+mongo启动(windows环境)
+1)配置数据存储位置和端口
+mongod --dbpath E:\mongodb\data --port xx(默认端口是27017)
+2) 在浏览器中访问
+http://localhost:27017 可以看到如下提示：
+You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number
+如此，Mongodb数据库服务已经完全启动了。
+通过mongod --dbpath E:\mongodb\data --port xx 启动mongodb进程，关闭控制台则关闭mongodb服务器，为了避免这种
+情况，在windows下将之设置为一个服务，以后直接启动该服务即可.
+注意，要用管理员模式来运行cmd命令行，否则日志里面则有提示: Error connecting to the Service Control Manager
+mongod --dbpath E:\mongodb\data --logpath E:\mongodb\log\MongoDB.log --install --serviceName "MongoDB"
+
+然后通过 net start MongoDB 启动mongo服务器
+net stop MongoDB 停止mongo服务器
+注意启动和停止都是在管理员身份下运行，因此写成bat脚本之后要在右键管理员身份下运行.
+
+3) 连接数据库
+mongo ip:port 例如 mongo 127.0.0.1:27017
+断开连接: quit()
+
+4) mongodb客户端
+cmd / vue / nosql manager for mongodb
+
+
+2.常用命令
+1) 创建数据库
+use xxdb 创建xxdb，当使用use xxdb命令时创建第一个collection时会自动创建xxdb数据库.
+删除当前数据库: db.dropDatabase(); 
+查询所有数据库: show dbs;
+2) 插入数据
+db.collectionName.insert({name:"jack", age:32}); 在collectionName中插入一个document，如果collectionName不存在则创建.
+3) 查询
+使用db.getCollectionNames()会得到collectionName和system.indexes.
+db.collectionName.find() 查找collectionName下的所有document，括号里面可以填写查询条件，不填默认为{}.
+db.collectionName.findOne() 同find() 只获取1条.
+db.collectionName.find({查询条件}, {指定返回字段，0-不返回该字段，1-返回(默认)，有指定则返回，无指定则默认返回})
+例如:  db.Student.find({name:"jack"},{name:1,age:1}) -- 表示查询name为jack的记录，返回name和age字段，_id键总是会返回.
+条件符号: $lt $lte $g $gte 分别对应 < <= > >=
+db.Student.find({age:{$gt:23,$lt:43}}) 表示 23 < age <= 43，{}中用逗号隔开表示且逻辑
+$ne 不等于，$in 在，$not 非，$or或
+db.Student.find({age:{$in:[13,53]}})
+db.Student.find(
+{
+$or:
+   [
+    {age:{$in:[13,53]}},
+    {name:"kaily"}
+   ]
+}) 
+4) 特殊查询
+null: 可以匹配自身且可以匹配不存在.
+--插入测试数据
+db.Student.insert({name:null,sex:1,age:18})  -- 字段name为null
+db.Student.insert({sex:1,age:24}) 字段name没有值/不存在
+
+db.Student.find({name:null})        --上面两条都能查到
+$exists:true/false 是否存在
+db.Student.find({name:{$in:[null],$exists:true}})  ---只能查到第一条
+5) 数组查询
+db.Student.insert({name:"wjh",sex:1,age:18,color:["red","blue","black"]})
+db.Student.insert({name:"lpj",sex:1,age:22,color:["white","blue","black"]})
+db.Student.find()
+
+--color数组中所有包含white的文档都会被检索出来
+db.Student.find({color:"white"});
+
+--color数据中所有包含read/blue的文档都会被检索出来，数组中必须同时包含read/blue，但顺序无关紧要
+db.Student.find({color:{$all:["red","blue"]}});
+
+--精确匹配，color中的数组必须和查询条件完全匹配，即不能多也不能少，顺序也必须保持一致
+db.Student.find({color:["red","blue","black"]});
+
+--匹配数组中指定的下标元素的值，数组的起始下标是0，注意color要加双引号
+db.Student.find({"color.0":"white"});
+
+6) 内嵌文档查询
+
+7) 排序
+1代表升序，-1代表降序
+db.Student.find().sort({age:1});
+db.Student.find().sort({age:-1});
+
+8) 分页
+db.Student.find().sort({age:1}).limit(3).skip(3); limit代表取多少个document(即pageSize)，
+skip代表跳过前多少个document(即startIndex)
+
+9) 获取数量
+db.Student.count({查询条件});
+或者
+db.Student.find({查询条件}).count();
+
+10) 删除数据
+db.Student.remove({查询条件});
+
+11) 更新数据
+db.Student.update({查询条件}, {更新的字段});
+例如: db.Student.update({name:"jack"},{age:55}); 将符合条件的document都替换为{age:55}，其他字段都没有了.
+一般更新采用如下: db.Student.update({name:"jack"},{$set:{age:55}}); 更新指定的字段，其他字段不变.
+增加字段
+db.Student.update({查询条件}, {$inc:{height:165}}); 增加字段height
+将数字字段增加多少增量
+db.Student.update({}, {$inc:{age:185}}); 存在则更新，只能用于数字字段，例如age更新前是50，更新后则变为235.
+
+12)批量更新数据
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+【项目信息】
+项目名称 : sqlserver
+中文名称 : 
+项目版本 : version 1.0
+
+主要技术 : sqlserver 、sql语句、分页、函数、
+
+项目描述 : sqlserver version all
+
+项目备注 : 针对sqlserver数据库，有针对性地适应于sqlserver各种语句，和java应用程序对接.
+为了对相应数据库的特性和底层sql的探知，数据库项目需要采用jdbc、dbutils、spring jdbcTemplate、mybatis等直接
+写sql语句的方式来操作数据库的框架.
+将原先[软件模板]中涉及到的模块，可以直接加入到当前数据库项目中，便于查阅和生产应用.
+
+【项目规划】
+
+1) 分页查询
+limit
+
+
+2) 增删改语句
+
+
+3) 函数调用
+
+
+4) 存储过程 (sqlserver 可能还未支持)
+
+
+5) 语句特性探索
+
+
+6) 语句优化
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
