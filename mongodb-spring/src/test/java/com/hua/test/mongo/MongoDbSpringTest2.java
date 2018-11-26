@@ -151,7 +151,6 @@ public final class MongoDbSpringTest2 extends BaseTest {
 			Update update = new Update();
 			update.set("username", "lisi");
 			WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class, "collection1");
-			
 			log.info("testUpdate =====> " + writeResult.getN());
 			
 		} catch (Exception e) {
