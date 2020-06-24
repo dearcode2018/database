@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hua.mapper.auto.QueryExampleMapper">
+  <resultMap id="BaseResultMap" type="com.hua.entity.QueryExample">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="char_type" jdbcType="CHAR" property="charType" />
+    <result column="varchar_type" jdbcType="VARCHAR" property="varcharType" />
+    <result column="decimal_type" jdbcType="DECIMAL" property="decimalType" />
+    <result column="int_type" jdbcType="INTEGER" property="intType" />
+    <result column="enum_type" jdbcType="CHAR" property="enumType" />
+    <result column="bit_type" jdbcType="BIT" property="bitType" />
+    <result column="timestamp_type" jdbcType="TIMESTAMP" property="timestampType" />
+  </resultMap>
+</mapper>

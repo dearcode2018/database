@@ -13,14 +13,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<orm.version>0.0.1</orm.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>orm</artifactId>
-			<version>${orm.version}</version>
+			<artifactId>database</artifactId>
+			<version>${database.version}</version>
 		</dependency>
 		
 	</dependencies>

@@ -215,7 +215,7 @@ public final class JdbcTest extends BaseTest {
 	@Test
 	public void testSqlUtil() {
 		String str = "a_b_c_d_%_0%";
-		System.out.println(SqlUtil.likeQuery(str, false, false));
+		System.out.println(SqlUtil.likeQuery(str));
 	}
 	
 	/**
