@@ -16,7 +16,7 @@
 		<common.version>0.0.1</common.version>
 		
 		<!-- jdbc -->
-		<jdbc.mysql.version>5.1.34</jdbc.mysql.version>
+		<jdbc.mysql.version>8.0.16</jdbc.mysql.version>
 		<jdbc.oracle.version>10.2.0.4.0</jdbc.oracle.version>
 		<jdbc.sqlserver.version>4.0</jdbc.sqlserver.version>
 		<db2.version>0.0.1</db2.version>
