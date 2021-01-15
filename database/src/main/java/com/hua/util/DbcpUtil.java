@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp2.BasicDataSourceFactory;
+//import org.apache.commons.dbcp2.BasicDataSourceFactory;
 
 import com.hua.bean.DbcpParam;
 
@@ -33,7 +33,7 @@ public final class DbcpUtil
 		try
 		{
 			// 创建数据源对象
-			dataSource = BasicDataSourceFactory.createDataSource(DbcpParam.getProps());
+			//dataSource = BasicDataSourceFactory.createDataSource(DbcpParam.getProps());
 		} catch (Exception e)
 		{
 			e.printStackTrace();
