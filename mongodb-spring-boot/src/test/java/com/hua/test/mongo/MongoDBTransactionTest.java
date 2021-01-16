@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * SpringBoot2Test.java
+ * MongoDBTransactionTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.boot;
+package com.hua.test.mongo;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -20,6 +20,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
+import java.time.LocalDateTime;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -28,10 +33,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hua.ApplicationStarter;
+import com.hua.entity.User;
 import com.hua.test.BaseTest;
 
 
@@ -39,18 +46,18 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * SpringBoot2Test
+ * MongoDBTransactionTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
 // for Junit 5.x
 @ExtendWith(SpringExtension.class)
-@WebAppConfiguration(value = "src/main/webapp")
+//@WebAppConfiguration(value = "src/main/webapp")
 @SpringBootTest(classes = {ApplicationStarter.class}, 
 webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 //@MapperScan(basePackages = {"com.hua.mapper"})
-public final class SpringBoot2Test extends BaseTest {
+public final class MongoDBTransactionTest extends BaseTest {
 
 	
 	/*
@@ -90,7 +97,34 @@ public final class SpringBoot2Test extends BaseTest {
 	 * 
 	 */
 	
-	
+    @Resource
+    private MongoTemplate mongoTemplate;
+    
+    /**
+     * 
+     * 描述: 
+     * @author qye.zheng
+     * 
+     */
+    @Test
+    @Transactional
+    public void testTransaction() {
+        try {
+            /* id重复不会再插进去*/
+            User user = new User();
+            // 不指定id则自动生成
+            user.setOid(RandomStringUtils.randomAlphabetic(10));
+            user.setUsername("zhangping244");
+            user.setPassword("123456");
+            user.setValid(true);
+            user.setLastLoginTime(LocalDateTime.now());
+            mongoTemplate.save(user);
+            // 指定存放的集合
+            //mongoTemplate.save(user, tableName);
+        } catch (Exception e) {
+            log.error("testSave =====> ", e);
+        }
+    }
 	
 	/**
 	 * 
