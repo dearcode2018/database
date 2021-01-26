@@ -5,36 +5,29 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>database-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>mongodb-spring</artifactId>
 	<packaging>jar</packaging>
 	<name>mongodb-spring</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<mongodb.version>0.0.1</mongodb.version>
-		<mongodb-spring.version>1.10.4.RELEASE</mongodb-spring.version>		
-		<spring.version>4.1.6.RELEASE</spring.version>		
+
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>mongodb</artifactId>
-			<version>${mongodb.version}</version>
+			<artifactId>database-core</artifactId>
 		</dependency>
 
 		<dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-mongodb</artifactId>
-		    <version>${mongodb-spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
 		</dependency>		
 		
 	</dependencies>
